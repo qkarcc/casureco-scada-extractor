@@ -1,0 +1,18 @@
+# PyInstaller build output
+build/
+dist/
+*.spec
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Output files (user-generated, don't commit)
+output_*.xlsx
+output_*.txt
+
+# Feeder input files (large SCADA data, keep local)
+Lagonoy*.xlsx
+Presentacion*.xlsx
+Tigaon*.xlsx
