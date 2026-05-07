@@ -24,11 +24,11 @@ jobs:
 
       - name: Build EXE
         run: |
-          pyinstaller --onefile --name automate_report --console automate_report.py
+          pyinstaller --onefile --name "CASURECO4_FeederExtractor" --console automate_report.py
 
       - name: Upload EXE artifact
         uses: actions/upload-artifact@v4
         with:
-          name: automate_report_windows
-          path: dist\automate_report.exe
+          name: CASURECO4_FeederExtractor_Windows
+          path: dist\CASURECO4_FeederExtractor.exe
           retention-days: 30

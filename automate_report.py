@@ -1,7 +1,6 @@
 """
-automate_report.py
-==================
-CASURECO IV — Distribution Lines & Power Quality Report Automation
+automate_report.py  —  CASURECO IV Distribution Lines & Power Quality Report Automation
+========================================================================================
 
 Reads all available feeder SCADA files and writes extracted values
 to a clean Excel file: "output_MONTH_YEAR.xlsx"
@@ -172,8 +171,8 @@ def extract(filepath):
                 # Off-peak current: also exclude values < 10 (noise/near-zero)
                 live = series[series >= 10]
             else:
-                # Off-peak voltage: exclude zero/negative only
-                live = series[series > 0]
+                # Off-peak voltage: only values >= 6 (exclude faults/outages below 6kV)
+                live = series[series >= 6]
 
             if live.empty:
                 result[field_key] = {"value": "NS", "cell": "NS"}
@@ -290,9 +289,15 @@ def build_excel(month_label, table):
 # ===========================================================================
 
 def main():
-    print("=" * 65)
-    print("  CASURECO IV -- Distribution Lines & Power Quality Extractor")
-    print("=" * 65)
+    LINE = "=" * 70
+    print(LINE)
+    print("  CASURECO IV  —  Distribution Lines & Power Quality")
+    print("  SCADA Feeder Data Extractor  v1.0")
+    print(LINE)
+    print("  Organization : Camarines Sur IV Electric Cooperative (CASURECO IV)")
+    print("  Developers   : Quinkylo P. Arcilla")
+    print("                 Junel C. Celestial")
+    print(LINE)
 
     month_label = input(
         "\nEnter month label (e.g. APRIL 2026): "
