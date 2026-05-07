@@ -33,7 +33,14 @@ from datetime import datetime
 # CONFIG
 # ===========================================================================
 
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+import sys
+
+# BASE_DIR = folder containing the .exe (Windows) or the script (Linux/dev)
+# sys.frozen is set by PyInstaller when running as a compiled executable
+if getattr(sys, "frozen", False):
+    BASE_DIR = os.path.dirname(sys.executable)
+else:
+    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 OUTPUT_FILE = os.path.join(
     BASE_DIR,
