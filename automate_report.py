@@ -333,7 +333,13 @@ def main():
     wb.save(out_path)
 
     print(f"\nSaved: {out_path}")
+    print("\n" + "=" * 55)
+    input("  Done! Press ENTER to exit...")
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except Exception as e:
+        print(f"\nERROR: {e}")
+        input("\nPress ENTER to exit...")
